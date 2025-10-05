@@ -6,7 +6,8 @@ const Book = ({singleBook}) => {
     console.log(singleBook)
     return (
         <Link to={`/BookDetails/${singleBook.bookId}`}>
-              <div className="card bg-base-100 border-2 border-blue-500  w-96 shadow-sm">
+              <div className="card bg-base-100 border-2 border-blue-500
+                w-94 shadow-sm">
   <figure className=' bg-gray-200 p-4 rounded-2xl w-2/3 mx-auto mt-6'>
     <img className='h-[200px] p-4'
       src={singleBook.image}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLoaderData, useParams } from 'react-router';
+import { addToStoredDB } from '../../utility/addToDB';
 
 const BookDetails = () => {
     const {id} = useParams()
@@ -10,14 +11,19 @@ const BookDetails = () => {
     const singleBook = data.find(book => book.bookId === bookID)
     //console.log(singleBook)
 
+
+    const handleMarkAsRead = id => {
+        addToStoredDB(id)
+    }
+
     return (
-        <div className='border border-red-500 m-10 p-6'>
+        <div className='border border-red-500 m-10 p-6 w-full mx-auto'>
 
            <div className='flex'>
-                 <div className='max-w-[500px] bg-gray-200 rounded-2xl ml-[150px] border border-blue-500 p-4 '>
-                    <img className='mt-6 w-[600px]' src={singleBook.image} alt="" />
+                 <div className='max-w-[700px] bg-gray-200 rounded-2xl ml-[150px] border border-blue-500 p-4 '>
+                    <img className='mt-6 w-[500px] p-4' src={singleBook.image} alt="" />
                 </div>
-                <div className='ml-8'>
+                <div className='ml-10 mt-20'>
                     <h1 className='text-3xl font-semibold'>{singleBook.bookName}</h1>
                     <h2 className='mt-2 text-xl'>By : {singleBook.author}</h2>
                     <p className='border-b-1 border-gray-300 mt-3'></p>
@@ -37,7 +43,7 @@ const BookDetails = () => {
                         <p>Year of Publishing:<span className='ml-10 font-bold'>{singleBook.yearOfPublishing}</span></p>
                         <p>Rating:<span className='ml-31 font-bold'>{singleBook.rating}</span></p>
                      </div>
-                    <button className="btn btn-primary m-2">Mark as Read</button>
+                    <button onClick={()=>handleMarkAsRead(id)} className="btn btn-primary m-2">Mark as Read</button>
                     <button className="btn btn-accent m-2">Add to WishList</button>
                 </div>
            </div>
